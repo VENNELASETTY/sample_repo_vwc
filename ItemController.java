@@ -29,6 +29,14 @@ import com.sb.service.ItemService;
 public class ItemController {
 
 	@Autowired
+/* RQ_1301 modifications Start*/ 
+
+	@PostMapping("/create")
+	public ResponseEntity<Item1> createItem(@Valid @RequestBody Item1 item) {
+		try {
+			Item1 t = itemService.saveOrUpdate(item);
+/* RQ_1301 modifications End*/ 
+
 
 	ItemService itemService;
 
@@ -46,6 +54,7 @@ public class ItemController {
 		}
 	}
 
+ 
 	@GetMapping("/item/{id}")
 	public ResponseEntity<Item1> getItemById(@PathVariable(value = "id") Long itemId) throws ResourceNotFoundException {
 		Item1 item = itemRepository.findById(itemId)
